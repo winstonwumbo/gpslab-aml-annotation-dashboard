@@ -30,13 +30,7 @@ export class DashboardSidebar extends DDDSuper(I18NMixin(LitElement)) {
       ...this.t,
       title: "Title",
     };
-    this.registerLocalization({
-      context: this,
-      localesPath:
-        new URL("./locales/gpslab-annotation-dashboard.ar.json", import.meta.url).href +
-        "/../",
-      locales: ["ar", "es", "hi", "zh"],
-    });
+    
     this.addEventListener("close-popup", this.__handleClosePopup.bind(this));
 
   }
