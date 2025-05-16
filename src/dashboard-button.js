@@ -12,10 +12,10 @@ import { I18NMixin } from "@haxtheweb/i18n-manager/lib/I18NMixin.js";
  * @demo index.html
  * @element gpslab-annotation-dashboard
  */
-export class GpslabAnnotationDashboard extends DDDSuper(I18NMixin(LitElement)) {
+export class DashboardButton extends DDDSuper(I18NMixin(LitElement)) {
 
   static get tag() {
-    return "gpslab-annotation-dashboard";
+    return "dashboard-button";
   }
 
   constructor() {
@@ -49,27 +49,39 @@ export class GpslabAnnotationDashboard extends DDDSuper(I18NMixin(LitElement)) {
     css`
       :host {
         display: block;
-        color: var(--ddd-theme-primary);
-        background-color: var(--ddd-theme-accent);
         font-family: var(--ddd-font-navigation);
       }
       .wrapper {
-        margin: var(--ddd-spacing-2);
-        padding: var(--ddd-spacing-4);
+        display: flex;
+        justify-content: center;
+        margin: 20px 0;
       }
-      h3 span {
-        font-size: var(--gpslab-annotation-dashboard-label-font-size, var(--ddd-font-size-s));
+      button {
+        padding: 15px 20px;
+        border-radius: 5px;
+        width: 250px;
+        border: none;
+        font-weight: bold;
+        font-size: 16px;
+        background-color: var(--dashboard-button-background-color, var(--ddd-theme-default-white));
+        color: var(--dashboard-button-text-color, var(--ddd-theme-default-nittanyNavy));
       }
+      button:hover {
+        cursor: pointer;
+        background-color: darkgray;
+      }
+      gpslab-annotation-dashboard:hover {
+      box-shadow: var(--ddd-boxShadow-sm);
+    }
     `];
   }
 
   // Lit render the HTML
   render() {
     return html`
-<div class="wrapper">
-  <h3><span>${this.t.title}:</span> ${this.title}</h3>
-  <slot></slot>
-</div>`;
+        <div class="wrapper">
+            <slot></slot><button>${this.title}</button>
+        </div>`;
   }
 
   /**
@@ -81,4 +93,4 @@ export class GpslabAnnotationDashboard extends DDDSuper(I18NMixin(LitElement)) {
   }
 }
 
-globalThis.customElements.define(GpslabAnnotationDashboard.tag, GpslabAnnotationDashboard);
+globalThis.customElements.define(DashboardButton.tag, DashboardButton);
